@@ -8,6 +8,7 @@ import os
 
 bearer = HTTPBearer()
 
+# Dependency to get the current user from the JWT token
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(bearer),
     db: Session = Depends(get_db)

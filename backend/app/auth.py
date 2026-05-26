@@ -8,6 +8,12 @@ GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 
+if GOOGLE_CLIENT_ID is None:
+    raise RuntimeError("GOOGLE_CLIENT_ID environment variable is not set")
+
+if SECRET_KEY is None:
+    raise RuntimeError("SECRET_KEY environment variable is not set")
+
 def verify_google_token(token: str):
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), GOOGLE_CLIENT_ID)
     email = idinfo["email"]

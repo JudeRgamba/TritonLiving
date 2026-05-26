@@ -1,0 +1,18 @@
+services:
+  postgres:
+    # image is blue print for creating container, it specifies which image to use
+    image: postgres:18.4
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tritonliving
+    # ports maps host port to container port, so we can access postgres on localhost:5432
+    ports:
+      - "5432:5432"
+    # volumes allows us to persist data, so even if container is removed, data will still be there
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:
+
